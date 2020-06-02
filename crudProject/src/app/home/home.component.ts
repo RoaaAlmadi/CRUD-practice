@@ -14,9 +14,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
    this.showlist()
   }
+
   showlist(){
-    this.firebaseService.getusers().subscribe(users =>{
+    this.firebaseService.getUsers().subscribe(users =>{
       console.log(users)
+  
     })
 
   }
