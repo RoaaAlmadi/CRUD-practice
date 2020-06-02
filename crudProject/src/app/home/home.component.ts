@@ -1,3 +1,4 @@
+import { Users } from './../users';
 import { FirebaseService } from './../services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,18 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
  
-
+users: Users[];
   constructor(public firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
    this.showlist()
+   
   }
-
+  
   showlist(){
     this.firebaseService.getUsers().subscribe(users =>{
       console.log(users)
-  
+      this.users = users as Array<Users>
     })
 
   }
+
 }
