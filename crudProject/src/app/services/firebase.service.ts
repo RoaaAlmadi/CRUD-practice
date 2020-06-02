@@ -12,7 +12,7 @@ user: Observable<User>
   constructor( public afs: AngularFirestore ) {
     
    }
-   getusers(){
+   getUsers(){
      return   this.afs.collection('users').valueChanges();
    }
 }
