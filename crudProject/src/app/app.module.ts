@@ -1,3 +1,4 @@
+import { FirebaseService } from './services/firebase.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +10,9 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+
+import { from } from 'rxjs';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,7 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
  	  AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
