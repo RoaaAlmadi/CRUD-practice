@@ -1,10 +1,6 @@
 import { Users } from './../users';
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-=======
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestoreCollectionGroup } from '@angular/fire/firestore';
->>>>>>> devolp
 import { Observable } from 'rxjs';
 import { User } from 'firebase';
 
@@ -14,17 +10,6 @@ import { User } from 'firebase';
   providedIn: 'root'
 })
 export class FirebaseService {
-<<<<<<< HEAD
-  userCollection: AngularFirestoreCollection<User>;
-  users: Observable<User[]>;
-  
-  constructor(public afs: AngularFirestore) {
-    
-   }
-   getUsers(){
-     return this.afs.collection('users').valueChanges();
-   }
-=======
   usersCollection: AngularFirestoreCollection<Users>;
   
   users: Users[];
@@ -52,5 +37,4 @@ export class FirebaseService {
       deleteUser(keyID){
         this.afs.collection('users').doc(keyID).delete();
       }
->>>>>>> devolp
 }

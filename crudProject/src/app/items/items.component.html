@@ -1,6 +1,8 @@
 <div *ngIf="items?.length > 0; else noItems">
-    <ul *ngFor="let item of items" class="collection">
-        <li class="collection-item"><strong>{{item.title}}: </strong>{{item.description}} - {{item.id}}</li>
+    <ul *ngFor="let item of items"  class="list-group-item list-group-item-action flex-colomn align-item-start right">
+        <li (dblclick)="deleteItem(item)">
+            <strong>{{item.title}}: </strong>{{item.description}} - {{item.id}}
+        </li>
     </ul>
 </div>
     

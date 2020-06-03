@@ -20,11 +20,6 @@ export class HomeComponent implements OnInit {
   }
   
   showlist(){
-<<<<<<< HEAD
-    this.firebaseService.getUsers().subscribe(users =>{
-      // console.log(users)
-      this.users = users as Array<Users>
-=======
     this.firebaseService.getUsers().subscribe(data =>{
    
       this.users = data.map(res =>{
@@ -36,7 +31,6 @@ export class HomeComponent implements OnInit {
           avatar: res.payload.doc.data()['avatar']
        }
       })
->>>>>>> devolp
     })
 
   }
