@@ -9,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
- 
-users: Users[];
+  users: Users[];
+  editState: boolean = false;
+  userToEdit: Users;
+
   constructor(public firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
@@ -18,11 +20,34 @@ users: Users[];
   }
   
   showlist(){
+<<<<<<< HEAD
     this.firebaseService.getUsers().subscribe(users =>{
       // console.log(users)
       this.users = users as Array<Users>
+=======
+    this.firebaseService.getUsers().subscribe(data =>{
+   
+      this.users = data.map(res =>{
+        return{
+          id: res.payload.doc.id,
+          name: res.payload.doc.data()['name'],
+          surname: res.payload.doc.data()['surname'],
+          age: res.payload.doc.data()['age'],
+          avatar: res.payload.doc.data()['avatar']
+       }
+      })
+>>>>>>> devolp
     })
 
+  }
+
+  deleteUser(user: Users){
+    this.firebaseService.deleteUser(user.id);
+  }
+
+  editUser(user: Users){
+    this.editState = true;
+    this.userToEdit = user;
   }
 
 }

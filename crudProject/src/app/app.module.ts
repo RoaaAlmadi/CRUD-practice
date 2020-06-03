@@ -10,9 +10,10 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-
 import { from } from 'rxjs';
 import { ItemsComponent } from './items/items.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,10 +26,12 @@ import { ItemsComponent } from './items/items.component';
     ItemsComponent
   ],
   imports: [
+    FormsModule, 
+    ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
- 	  AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase, 'crudProject'),
+    AngularFirestoreModule,
+ 	  AppRoutingModule,
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

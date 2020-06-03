@@ -1,1 +1,25 @@
-<p>new-user works!</p>
+<div class="container">
+    <div class="card">
+        <div class=" card-content">
+            <span class="card-title"> <h5>Add A User</h5></span>
+            <form [formGroup]="crudForm" (ngSubmit)="onSubmit(crudForm.value)" class="col s5">
+                <div class="row">
+                    <div class="input-forls col s6">
+                        <input type="text" placeholder="Avatar" formControlName="avatar">
+                    </div>
+                    <div class="input-forls col s6">
+                        <input type="text" placeholder="Name"  formControlName="name">
+                    </div>
+                    <div class="input-forls col s6">
+                        <input type="text" placeholder="Surname" formControlName="surname">
+                    </div>
+                    <div class="input-forls col s6">
+                        <input type="text" placeholder="Age" formControlName="age">
+                    </div>
+                    <input type="submit" value="Create" class="btn button" >
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
