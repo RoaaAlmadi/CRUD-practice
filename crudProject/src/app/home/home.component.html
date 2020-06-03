@@ -1,4 +1,4 @@
-<div *ngIf="users?.length >0;else noUsers" class="container">
+<div *ngIf="users?.length >0;else noUsers" >
     <ul *ngFor="let user of users" class="list-group-item list-group-item-action flex-colomn align-item-start right">
         <li (dblclick)="deleteUser(user)" class="">
             {{user.avatar}} - {{user.name}} - {{user.surname}} - {{user.age}} 
@@ -11,23 +11,7 @@
                 </i>
             </a>
             <div *ngIf="editState && userToEdit.id == user.id">
-                <form >
-                    <div class="row">
-                        <div class="input-forls col s4">
-                            <input type="text" placeholder="Avatar" formControlName="avatar">
-                        </div>
-                        <div class="input-forls col s4">
-                            <input type="text" placeholder="Name"  formControlName="name">
-                        </div>
-                        <div class="input-forls col s4">
-                            <input type="text" placeholder="Surname" formControlName="surname">
-                        </div>
-                        <div class="input-forls col s4">
-                            <input type="text" placeholder="Age" formControlName="age">
-                        </div>
-                        <input type="submit" value="Update" class="btn button" >
-                    </div>
-                </form>
+                <app-edit-user></app-edit-user>
             </div>
         </li>
     </ul>
@@ -37,3 +21,8 @@
     <hr>
     <h5>There are no users to list</h5>
 </ng-template>
+
+<hr>
+<div>
+    <app-items></app-items>
+</div>

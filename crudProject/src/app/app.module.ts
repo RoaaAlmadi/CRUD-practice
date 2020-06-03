@@ -11,6 +11,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { from } from 'rxjs';
+import { ItemsComponent } from './items/items.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     EditUserComponent,
     AvatarDialogComponent,
-    NewUserComponent
+    NewUserComponent,
+    ItemsComponent
   ],
   imports: [
     FormsModule, 
