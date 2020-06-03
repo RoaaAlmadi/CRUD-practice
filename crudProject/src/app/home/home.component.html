@@ -1,3 +1,11 @@
-<div *ngFor="let user of users">
-    {{user.name}} - {{user.surname}} - {{user.age}} - {{user.avatar}}
+<div *ngIf="users?.length >0;else noUsers" class="container">
+    <ul *ngFor="let user of users" class="list-group-item list-group-item-action flex-colomn align-item-start right">
+        <li (dblclick)="deleteUser(user)" class="">
+        {{user.avatar}} - {{user.name}} - {{user.surname}} - {{user.age}}</li>
+    </ul>
 </div>
+
+<ng-template #noUsers>
+    <hr>
+    <h5>There are no users to list</h5>
+</ng-template>
