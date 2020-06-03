@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { Item } from '../models/item';
 
 
@@ -9,21 +8,29 @@ import { Item } from '../models/item';
 })
 export class ItemService {
   itemsCollection: AngularFirestoreCollection<Item>;
-  items: Observable<Item[]>;
+  items: Item[];
+  itemDoc: AngularFirestoreDocument<Item>;
 
   constructor(public afs: AngularFirestore) {
-    this.items = this.afs.collection('items').valueChanges();
-    // this.items = this.afs.collection('items').snapshotChanges().map(changes => {
-    //   return changes.map(a => {
-    //     const data = a.payload.doc.data() as Item;
-    //     data.id = a.payload.doc.id;
-    //     return data;
-    //   });
-    // })
+      this.itemsCollection = this.afs.collection('items', ref => ref.orderBy('title', 'asc')); 
+
+    // this.items = this.afs.collection('items').valueChanges();
    }
 
    getItems() {
-     return this.items;
+      return this.afs.collection('items').snapshotChanges();
    }
 
+   addItem(value){ //value {title, description}
+      this.afs.collection('items').add({
+        title: value.title,
+        description: value.description,
+      }); //add to fire store
+  }
+    
+    deleteItem(keyID){
+      this.afs.collection('items').doc(keyID).delete();
+  }
+
+  
 }
