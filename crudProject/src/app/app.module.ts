@@ -24,9 +24,9 @@ import { from } from 'rxjs';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
- 	  AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase, 'crudProject'),
+    AngularFirestoreModule,
+ 	  AppRoutingModule,
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]
