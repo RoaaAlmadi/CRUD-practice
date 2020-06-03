@@ -20,14 +20,6 @@ export class FirebaseService {
 
     }
     getUsers(){
-      //return this.usersCollection.valueChanges();
-        //this.users = this.afs.usercollection.snapshotChanges().pipe(
-        // map(actions => actions.map(a => {
-        //   const data = a.payload.doc.data() as User;
-        //   const id = a.payload.doc.id;
-          //  return data;
-        // }))
-        //); 
         return this.afs.collection('users').snapshotChanges()
       }
 
@@ -44,7 +36,5 @@ export class FirebaseService {
 
       deleteUser(keyID){
         this.afs.collection('users').doc(keyID).delete();
-        // this.userDoc = this.afs.doc('users/${user.id}');
-        // this.userDoc.delete();
       }
 }
