@@ -15,5 +15,20 @@ user: Observable<User[]>;
    }
    getUsers(){
      return this.afs.collection('users').valueChanges();
-   }
+      //this.users = this.afs.usercollection.snapshotChanges().pipe(
+       // map(actions => actions.map(a => {
+       //   const data = a.payload.doc.data() as User;
+       //   const id = a.payload.doc.id;
+        //  return data;
+       // }))
+      //); 
+      //this.users = this.afs.collection('users').snapshotChanges().map(changes => {
+        //return changes.map(a => {
+         // const data = a.payload.doc.data() as User;
+         // data.id = a.payload.doc.id;
+         // return data;
+        //})
+        
+      //})
+    }
 }
