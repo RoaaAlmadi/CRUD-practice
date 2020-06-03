@@ -4,12 +4,15 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { Observable } from 'rxjs';
 import { User } from 'firebase';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
   usersCollection: AngularFirestoreCollection<Users>;
-  user: Observable<User[]>;
+  
+  users: Users[];
   userDoc: AngularFirestoreDocument<User>;
     constructor( public afs: AngularFirestore ) {
       
@@ -17,7 +20,7 @@ export class FirebaseService {
 
     }
     getUsers(){
-      return this.usersCollection.valueChanges();
+      //return this.usersCollection.valueChanges();
         //this.users = this.afs.usercollection.snapshotChanges().pipe(
         // map(actions => actions.map(a => {
         //   const data = a.payload.doc.data() as User;
@@ -25,22 +28,23 @@ export class FirebaseService {
           //  return data;
         // }))
         //); 
-        //this.users = this.afs.collection('users').snapshotChanges().map(changes => {
-          //return changes.map(a => {
-          // const data = a.payload.doc.data() as User;
-          // data.id = a.payload.doc.id;
-          // return data;
-          //})
-          
-        //})
+        return this.afs.collection('users').snapshotChanges()
       }
 
-      newUser(user :User){
-        this.usersCollection.add(user); //add to fire store
+
+
+      newUser(value){ //value {age, name, surname, avatar}
+        this.afs.collection('users').add({
+          name: value.name,
+          surname: value.surname,
+          age: value.age,
+          avatar: value.avatar
+        }); //add to fire store
       }
 
-      deleteUser(user){
-        this.userDoc = this.afs.doc('users/${user.id}');
-        this.userDoc.delete();
+      deleteUser(keyID){
+        this.afs.collection('users').doc(keyID).delete();
+        // this.userDoc = this.afs.doc('users/${user.id}');
+        // this.userDoc.delete();
       }
 }

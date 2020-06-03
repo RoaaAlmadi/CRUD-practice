@@ -1,6 +1,6 @@
 <div *ngIf="users?.length >0;else noUsers" class="container">
     <ul *ngFor="let user of users" class="list-group-item list-group-item-action flex-colomn align-item-start right">
-        <li (dblclick)="deleteUser($event, user)" class="">
+        <li (dblclick)="deleteUser(user)" class="">
         {{user.avatar}} - {{user.name}} - {{user.surname}} - {{user.age}}</li>
     </ul>
 </div>

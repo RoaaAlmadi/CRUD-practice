@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from './../services/firebase.service';
+import { Users } from '../users';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -8,26 +10,28 @@ import { FirebaseService } from './../services/firebase.service';
   styleUrls: ['./new-user.component.css']
 })
 export class NewUserComponent implements OnInit {
-  user: User = {
-    avatar: '',
-    age: '',
-    name: '',
-    surname: '',
-  }
+  crudForm: FormGroup;
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.createForm()
   }
 
-  onSubmit(){
-    if(this.user.avatar != '' && this.user.age != '' && this.user.name != '' && this.user.surname != ''){
-      this.firebaseService.newUser(this.user);
-      this.user.avatar = '';
-      this.user.age = '';
-      this.user.name = '';
-      this.user.surname = '';
-    }
+  onSubmit(value){
+      this.firebaseService.newUser(value);
+
   }
+
+  createForm() {
+    this.crudForm = this.fb.group({
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      age: ['', Validators.required],
+      avatar: ['', Validators.required]
+    })
+   }
+
+
 
 }

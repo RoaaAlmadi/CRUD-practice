@@ -18,15 +18,23 @@ users: Users[];
   }
   
   showlist(){
-    this.firebaseService.getUsers().subscribe(users =>{
-      console.log(users)
-      this.users = users as Array<Users>
+    this.firebaseService.getUsers().subscribe(data =>{
+   
+      this.users = data.map(res =>{
+        return{
+          id: res.payload.doc.id,
+          name: res.payload.doc.data()['name'],
+          surname: res.payload.doc.data()['surname'],
+          age: res.payload.doc.data()['age'],
+          avatar: res.payload.doc.data()['avatar']
+       }
+      })
     })
 
   }
 
-  deleteUser(event, user){
-    this.firebaseService.deleteUser(user);
+  deleteUser(user: Users){
+    this.firebaseService.deleteUser(user.id);
   }
 
 }

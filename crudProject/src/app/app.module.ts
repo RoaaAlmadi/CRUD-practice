@@ -12,7 +12,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { from } from 'rxjs';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     FormsModule, 
-
+    ReactiveFormsModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase, 'crudProject'),
     AngularFirestoreModule,

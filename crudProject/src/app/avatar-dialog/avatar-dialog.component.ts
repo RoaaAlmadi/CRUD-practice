@@ -15,7 +15,7 @@ export class AvatarDialogComponent implements OnInit {
   ngOnInit(): void {
     this.firebaseService.getUsers().subscribe(users => {
       console.log(users);
-      this.users = users as Array<Users>;
+      // this.users = users as Array<Users>;
     });
   }
 
