@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
- 
-users: Users[];
+  users: Users[];
+  editState: boolean = false;
+  userToEdit: Users;
+
   constructor(public firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
@@ -35,6 +37,11 @@ users: Users[];
 
   deleteUser(user: Users){
     this.firebaseService.deleteUser(user.id);
+  }
+
+  editUser(user: Users){
+    this.editState = true;
+    this.userToEdit = user;
   }
 
 }
