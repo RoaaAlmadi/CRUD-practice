@@ -8,27 +8,39 @@ import { User } from 'firebase';
   providedIn: 'root'
 })
 export class FirebaseService {
-UsersCollection: AngularFirestoreCollection<Users>;
-user: Observable<User[]>;
-  constructor( public afs: AngularFirestore ) {
-    
-   }
-   getUsers(){
-     return this.afs.collection('users').valueChanges();
-      //this.users = this.afs.usercollection.snapshotChanges().pipe(
-       // map(actions => actions.map(a => {
-       //   const data = a.payload.doc.data() as User;
-       //   const id = a.payload.doc.id;
-        //  return data;
-       // }))
-      //); 
-      //this.users = this.afs.collection('users').snapshotChanges().map(changes => {
-        //return changes.map(a => {
-         // const data = a.payload.doc.data() as User;
-         // data.id = a.payload.doc.id;
-         // return data;
-        //})
-        
-      //})
+  usersCollection: AngularFirestoreCollection<Users>;
+  user: Observable<User[]>;
+  userDoc: AngularFirestoreDocument<User>;
+    constructor( public afs: AngularFirestore ) {
+      
+      this.usersCollection = this.afs.collection('users', ref => ref.orderBy('avatar', 'asc')); //ref is for formating "ascending"
+
     }
+    getUsers(){
+      return this.usersCollection.valueChanges();
+        //this.users = this.afs.usercollection.snapshotChanges().pipe(
+        // map(actions => actions.map(a => {
+        //   const data = a.payload.doc.data() as User;
+        //   const id = a.payload.doc.id;
+          //  return data;
+        // }))
+        //); 
+        //this.users = this.afs.collection('users').snapshotChanges().map(changes => {
+          //return changes.map(a => {
+          // const data = a.payload.doc.data() as User;
+          // data.id = a.payload.doc.id;
+          // return data;
+          //})
+          
+        //})
+      }
+
+      newUser(user :User){
+        this.usersCollection.add(user); //add to fire store
+      }
+
+      deleteUser(user){
+        this.userDoc = this.afs.doc('users/${user.id}');
+        this.userDoc.delete();
+      }
 }

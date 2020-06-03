@@ -25,4 +25,8 @@ users: Users[];
 
   }
 
+  deleteUser(event, user){
+    this.firebaseService.deleteUser(user);
+  }
+
 }
