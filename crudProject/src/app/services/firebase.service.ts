@@ -1,6 +1,6 @@
 import { Users } from './../users';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'firebase';
 
@@ -8,11 +8,13 @@ import { User } from 'firebase';
   providedIn: 'root'
 })
 export class FirebaseService {
-user: Observable<User>
-  constructor( public afs: AngularFirestore ) {
+  userCollection: AngularFirestoreCollection<User>;
+  users: Observable<User[]>;
+  
+  constructor(public afs: AngularFirestore) {
     
    }
    getUsers(){
-     return   this.afs.collection('users').valueChanges();
+     return this.afs.collection('users').valueChanges();
    }
 }

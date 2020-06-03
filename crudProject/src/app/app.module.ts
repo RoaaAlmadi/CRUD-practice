@@ -12,6 +12,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 import { from } from 'rxjs';
+import { ItemsComponent } from './items/items.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { from } from 'rxjs';
     HomeComponent,
     EditUserComponent,
     AvatarDialogComponent,
-    NewUserComponent
+    NewUserComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
