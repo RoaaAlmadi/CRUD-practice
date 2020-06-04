@@ -31,6 +31,5 @@ export class ItemService {
     deleteItem(keyID){
       this.afs.collection('items').doc(keyID).delete();
   }
-
   
 }
