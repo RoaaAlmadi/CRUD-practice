@@ -2,11 +2,13 @@ import { Users } from './../users';
 import { FirebaseService } from './../services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   users: Users[];
   editState: boolean = false;
@@ -16,7 +18,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
    this.showlist()
-   
   }
   
   showlist(){
