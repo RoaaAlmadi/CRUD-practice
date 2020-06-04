@@ -1,29 +1,24 @@
 import { Users } from './../users';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestoreCollectionGroup } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { User } from 'firebase';
-
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
   usersCollection: AngularFirestoreCollection<Users>;
-  
   users: Users[];
   userDoc: AngularFirestoreDocument<User>;
-    constructor( public afs: AngularFirestore ) {
-      
-      this.usersCollection = this.afs.collection('users', ref => ref.orderBy('avatar', 'asc')); //ref is for formating "ascending"
 
+    constructor( public afs: AngularFirestore ) {
+      this.usersCollection = this.afs.collection('users', ref => ref.orderBy('age', 'asc')); 
+      //ref is for formating "ascending"
     }
-    getUsers(){
+
+      getUsers(){
         return this.afs.collection('users').snapshotChanges()
       }
-
-
 
       newUser(value){ //value {age, name, surname, avatar}
         this.afs.collection('users').add({
